@@ -20,7 +20,6 @@ export type IArticle = {
 };
 export default function Home() {
   let { category } = useParams();
-  console.log(category);
   const [articles, setArticles] = useState<IArticle[]>([]);
   useEffect(() => {
     let api = `${API_BASE_URL}?country=us&apiKey=${API_KEY}`;
@@ -38,9 +37,9 @@ export default function Home() {
     fn();
   }, [category]);
   return (
-    <div className="home container mx-auto ">
+    <div className="home mx-auto">
       <Header />
-      <main>
+      <main className="mx-52 bg-white">
         {articles.map((article) => (
           <Article key={article.title} article={article} />
         ))}
