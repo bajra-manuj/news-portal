@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Header from "../common/Header.tsx";
 import axios from "axios";
 import Article from "../common/Article.tsx";
-import { API_KEY, BASE_URL } from "../utils/constants.tsx";
 import { useParams } from "react-router-dom";
+import { API_BASE_URL, API_KEY } from "../../globals/constants.tsx";
 
 export type IArticle = {
   source: {
@@ -20,11 +20,12 @@ export type IArticle = {
 };
 export default function Home() {
   let { category } = useParams();
+  console.log(category);
   const [articles, setArticles] = useState<IArticle[]>([]);
   useEffect(() => {
-    let api = `${BASE_URL}?country=us&apiKey=${API_KEY}`;
+    let api = `${API_BASE_URL}?country=us&apiKey=${API_KEY}`;
     if (category) {
-      api = `${BASE_URL}?country=us&category=${category}&apiKey=${API_KEY}`;
+      api = `${API_BASE_URL}?country=us&category=${category}&apiKey=${API_KEY}`;
     }
     const fn = async () => {
       try {
